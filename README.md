@@ -3,8 +3,8 @@
 
 ## List of Algorithm:
 
-1 PCA  
-2 Apriori  
+1. PCA  
+2. Apriori  
   
 ...
 
