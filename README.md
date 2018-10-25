@@ -3,9 +3,8 @@
 
 ## List of Algorithm:
 
-### 1 PCA
-一个简单的PCA例子
-### 2 Apriori
+1 PCA\r
+2 Apriori\r
 
 
 ...
