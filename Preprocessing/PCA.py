@@ -40,10 +40,3 @@ def pca(data, k):
     # Compute new data
     Y = P*X
     return Y
-
-
-# DWT
-#
-#
-def dwt(data):
-    return data
