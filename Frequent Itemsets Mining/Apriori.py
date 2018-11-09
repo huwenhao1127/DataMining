@@ -1,6 +1,8 @@
 #! /usr/local/bin/python3.6
 # coding=utf-8
 
+# 作者：huwenhao
+# Github主页： https://github.com/huwenhao1127/
 import numpy as np
 import os
 
@@ -68,7 +70,7 @@ def print_frequent_itemset(frequent_itemset):
 
 
 # 有每个频繁项集产生强关联规则
-def big_rules(frequent_itemset, min_conf=0.7):
+def big_rules(frequent_itemset, min_conf=0.8):
     big_rules_list = []
     confidence_list = []
     # 判断每个频繁项能否相互关联，能关联求conf并过滤
@@ -88,14 +90,15 @@ def big_rules(frequent_itemset, min_conf=0.7):
 
 
 # 项（item）：可能包含多个字符串，结构是set，存入项集时转换为frozenset
-# frequent_itemset: 总的频繁项集，频繁项的集合及对应支持度，结构是字典，key的结构为set->frozenset
-# candidate_itemset： 候选项集，候选项的集合及对应支持度， 结构是字典， key的结构为set->frozenset
-def apriori(data_set, min_sup=2):
+# frequent_itemset: 频繁项集的集合，频繁项集及对应支持度，结构是字典，key的数据类型为frozenset
+# candidate_itemset： 候选项集的集合，候选项集及对应支持度， 结构是字典， key的数据类型为frozenset
+def apriori(data_set, min_sup=3):
     frequent_itemset = {}
     candidate_itemset = {}
 
     # 第一次扫描D，产生候选集
     for i in data_set:
+        print(i)
         for j in i:
             j = frozenset({j})
             if j not in candidate_itemset:
@@ -115,6 +118,13 @@ def apriori(data_set, min_sup=2):
 
 dataset = [['牛奶', '面包', '尿布'], ['面包', '啤酒'], ['面包', '黄油'], ['牛奶', '面包', '啤酒'], ['牛奶', '黄油'], ['面包', '黄油'],
            ['牛奶', '黄油'], ['牛奶', '面包', '黄油', '尿布'], ['牛奶', '面包', '黄油']]
-a = apriori(dataset)
+
+data1 = [['M', 'O', 'N', 'K', 'E', 'Y'],
+         ['D', 'O', 'N', 'K', 'E', 'Y'],
+         ['M', 'A', 'K', 'E'],
+         ['M', 'U', 'C', 'K', 'Y'],
+         ['C', 'O', 'O', 'K', 'I', 'E']]
+a = apriori(data1)
 b, c = big_rules(a)
+
 

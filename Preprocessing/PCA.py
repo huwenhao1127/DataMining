@@ -1,11 +1,12 @@
 #! /usr/local/bin/python3.6
 # coding=utf-8
 
+# 作者：huwenhao
+# Github主页： https://github.com/huwenhao1127/
 import numpy as np
-import os
+import scipy.fftpack as fft
 
 np.set_printoptions(threshold=np.inf)
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
 # PCA（principal component analysis）
@@ -35,8 +36,38 @@ def pca(data, k):
         value = SortEigenvalue[RawDim-1-i]
         index = np.argwhere(eigenvalue == value)
         P[i] = eigenvector[index]
-    print('base：',P)
+    print('base：', P)
 
     # Compute new data
     Y = P*X
     return Y
+
+
+a = np.array([[1, 1, 1, 1, 0, 0, 0, 0],
+              [1, 1, 1, 1, 0, 0, 0, 0],
+              [1, 1, 1, 1, 0, 0, 0, 0],
+              [1, 1, 1, 1, 0, 0, 0, 0],
+              [1, 1, 1, 1, 0, 0, 0, 0],
+              [1, 1, 1, 1, 0, 0, 0, 0],
+              [1, 1, 1, 1, 0, 0, 0, 0],
+              [1, 1, 1, 1, 0, 0, 0, 0]])
+
+b = np.array([[1, 0, 1, 0, 1, 0, 1, 0],
+              [0, 1, 0, 1, 0, 1, 0, 1],
+              [1, 0, 1, 0, 1, 0, 1, 0],
+              [0, 1, 0, 1, 0, 1, 0, 1],
+              [1, 0, 1, 0, 1, 0, 1, 0],
+              [0, 1, 0, 1, 0, 1, 0, 1],
+              [1, 0, 1, 0, 1, 0, 1, 0],
+              [0, 1, 0, 1, 0, 1, 0, 1]])
+
+
+dct = lambda x: fft.dct(x, norm='ortho')
+idct = lambda x: fft.idct(x, norm='ortho')
+
+c = dct(b)
+d = idct(c)
+
+print(c)
+print(d)
+
