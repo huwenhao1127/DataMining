@@ -107,3 +107,4 @@ def creat_tree(data, min_sup=3):
 
 
 creat_tree(load_data())
+

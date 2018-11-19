@@ -115,7 +115,7 @@ def getMajorityClass(dataSet):
         else:
             classCount[data[-1]] += 1
     classCount = classCount.items()
-    classCount = sorted(classCount, key=lambda x:x[1], reverse=True)
+    classCount = sorted(classCount, key=lambda x: x[1], reverse=True)
     majorityClass = classCount[0][0]
     return majorityClass
 
@@ -141,6 +141,34 @@ def treeGenerate(dataSet, attributes):
     return tree
 
 
-myData, myLable = loadDataSet1()
-a = treeGenerate(myData, myLable)
-treePlotter.createPlot(a)
+# myData, myLable = loadDataSet1()
+# a = treeGenerate(myData, myLable)
+# treePlotter.createPlot(a)
+
+def threeSum(nums):
+    """
+    :type nums: List[int]
+    :rtype: List[List[int]]
+    """
+    result = []
+    adict = {}
+    dicts = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            a = -(nums[i] + nums[j])
+            if a not in adict:
+                adict[a] = [nums[i], nums[j]]
+        dicts.append(a)
+        adict.clear()
+    print(dicts)
+    for i in range(len(dicts)):
+        for j in range(len(nums)):
+            if j is not i and nums[j] in dicts[i]:
+                a = [nums[j], dicts[i][nums[j]][0], dicts[i][nums[j]][1]]
+                result.append(a)
+    return result
+
+
+a = [-1, 0, 1, 2, -1, -4]
+b = threeSum(a)
+print(b)
